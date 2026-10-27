@@ -19,6 +19,7 @@
             pkgs.volatility3
             pkgs.esp-idf
             pkgs.clang-tools
+            pkgs.dwarf2json
             pkgs.git
             (pkgs.python3.withPackages (ps: [
               ps.pefile

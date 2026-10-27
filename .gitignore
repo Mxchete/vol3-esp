@@ -2,3 +2,5 @@
 eim_config.toml
 plugin/__pycache__
 hello_world/build
+dump_output/*.elf
+symbols/*.json
