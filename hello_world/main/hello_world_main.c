@@ -44,6 +44,12 @@ void app_main(void)
 
     printf("Minimum free heap size: %" PRIu32 " bytes\n", esp_get_minimum_free_heap_size());
 
+    /* CNT6519 - Bad pointer to trigger coredump BEGIN */
+    volatile int *null_ptr = NULL;
+    int deref = *null_ptr;
+    printf("Null Pointer Dereference: %d\n", deref);
+    /* CNT6519 - Bad pointer to trigger coredump END */
+
     for (int i = 10; i >= 0; i--) {
         printf("Restarting in %d seconds...\n", i);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
