@@ -1,2 +1,4 @@
 .direnv
+eim_config.toml
 plugin/__pycache__
+hello_world/build
