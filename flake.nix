@@ -7,10 +7,11 @@
   };
 
   outputs = { self, nixpkgs, espidf }: 
-    let pkgs = import nixpkgs {
-      system = "x86_64-linux";
-      overlays = [ espidf.overlays.default ];
-      config.allowUnfree = true;
+    let
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ espidf.overlays.default ];
+        config.allowUnfree = true;
       };
     in {
       devShells.x86_64-linux.default =

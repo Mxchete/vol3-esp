@@ -42,6 +42,23 @@ Once the ESP is set, run the commands provided by run-commands.sh
 ```
 ./run-commands.sh
 ```
+When running the provided run-commands script. It will create the following directories:
 
+- symbols
+- dump_output
+
+Then, it will open a tmux terminal to flash the program to the esp32. Once the program crashes, gdb will open. Type 'y', then hit enter to load the symbol table. Next, paste the following command into gdb to get the memory image:
+```
+dump binary memory ../dump_output/memory_image.bin 0x3ffae000 0x40000000
+```
+Once this command finishes, exit the tmux terminal with your tmux prefix (default ctrl+b) + d. Exiting tmux will automatically close the session, so ensure the command finishes beforehand.
+
+From here, the commands will finish running on their own, ending with the run of the volatility plugin.
+If you have saved outputs (provided if you received the tar), you can just run:
+```
+vol -r pretty -p plugin/ -s symbols -f dump_output/memory_image.bin plugin.CNT6519Plugin --base-address 0x3ffae000 --symbols symbols
+```
+
+This will print the volatility results. These can be compared with the saved esp results (the plaintext is at dump_output/coredump_plaintext.txt)
 TODO:
 Explain getting image from GDB, and intermediary steps
