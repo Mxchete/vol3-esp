@@ -21,12 +21,18 @@
             pkgs.clang-tools
             pkgs.dwarf2json
             pkgs.git
+            pkgs.tmux
+            pkgs.bash
             (pkgs.python3.withPackages (ps: [
               ps.pefile
               ps.capstone
               ps.yara-python
             ]))
           ];
+
+          shellHook = ''
+            export ESP=/dev/ttyUSB0
+          '';
         };
     };
 }
